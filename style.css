@@ -427,6 +427,30 @@ background:rgba(0, 0, 0, 0.4);
   flex-wrap: wrap;
 }
 
+.device-set#mobile img {
+  flex: 0 0 auto;
+  width: 220px;
+  border-radius: 25px;
+  scroll-snap-align: center;
+}
+
+.device-set#mobile::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* override only for mobile slider */
+@media (max-width: 768px) {
+  .device-set.active#mobile {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 10px;
+  }
+}
+
 /* Default images (Mobile) */
 .device-set#mobile img {
   width: 280px;
@@ -441,7 +465,8 @@ background:rgba(0, 0, 0, 0.4);
 
 /* Desktop image – combined width of 4 mobiles */
 .device-set#desktop img {
-  width: calc(280px * 3    + 60px); /* 4 images + gaps */
+  /* 4 images (280px each) + 3 gaps (20px each) = 1180px */
+  width: calc(280px * 3 + 60px);
   max-width: 100%;
   height: auto;
   border-radius: 25px;
@@ -471,20 +496,37 @@ background:rgba(0, 0, 0, 0.4);
   }
 }
 
-/* RESPONSIVE FIXES */
-@media (max-width: 1024px) {
-  .device-set#desktop img {
-    width: 100%;
-  }
-}
-
+/* Mobile slider for the 4 screenshots */
 @media (max-width: 768px) {
-  .device-set#mobile img {
-    width: 200px;
+  .device-set#mobile {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 20px;
+    padding: 10px 0;
+    justify-content: flex-start;   /* left align for horizontal scroll */
+    flex-wrap: nowrap;              /* keep in a single row */
   }
+
+  .device-set#mobile img {
+    flex: 0 0 auto;                 /* prevent shrinking */
+    width: 220px;                   /* card width on phones */
+    height: auto;
+    border-radius: 25px;
+    scroll-snap-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  /* Hide scrollbar (WebKit) */
+  .device-set#mobile::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Keep desktop image responsive on phones */
   .device-set#desktop img {
     width: 100%;
   }
+
   .device-buttons {
     flex-direction: column;
     gap: 10px;
