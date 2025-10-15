@@ -1102,3 +1102,134 @@ background:rgba(0, 0, 0, 0.4);
   50% { transform: translateY(-12px); } /* Moves upward slightly */
   100% { transform: translateY(0); } /* Returns to original position */
 }
+
+/* ===== DEVICE VIEW RESPONSIVENESS ===== */
+
+/* Hide extra mobile images */
+@media (max-width: 768px) {
+  .device-set#mobile .hide-mobile {
+    display: none !important;
+  }
+
+  .device-set#mobile img {
+    width: 260px;
+    height: auto;
+    border-radius: 25px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .devices-gallery {
+    text-align: center;
+  }
+}
+
+/* Keep all visible on desktop */
+@media (min-width: 769px) {
+  .device-set#mobile .hide-mobile {
+    display: inline-block !important;
+  }
+}
+
+
+/* ===== MOBILE PADDING FIX ===== */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* For hero and about sections (to avoid text touching screen edges) */
+  .hero-content,
+  .about-content,
+  .about,
+  .features,
+  .reviews,
+  .faq,
+  .footer {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+
+  /* ===== MOBILE DEVICES SECTION FIX ===== */
+@media (max-width: 768px) {
+  /* Hide extra images */
+  .device-set#mobile .hide-mobile {
+    display: none !important;
+  }
+
+  /* Show only the first image and center it */
+  .device-set#mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow: hidden; /* no scroll */
+    padding: 10px 0;
+  }
+
+  .device-set#mobile img {
+    width: 260px;
+    height: auto;
+    border-radius: 25px;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .device-set#mobile {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 20px;
+    padding: 10px 0;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+  }
+}
+
+
+/* ===== MOBILE DEVICE DISPLAY FIX ===== */
+
+/* Desktop default: keep everything as it is */
+.device-set#mobile img {
+  width: 280px;
+  height: auto;
+  border-radius: 25px;
+  transition: transform 0.3s ease;
+}
+.device-set#mobile img:hover {
+  transform: translateY(-8px);
+}
+
+/* Mobile view (≤768px): show only 1st phone (m1), hide others + hide laptop */
+@media (max-width: 768px) {
+  /* Hide 2nd, 3rd, and 4th phone */
+  .device-set#mobile img:nth-child(n+2) {
+    display: none !important;
+  }
+
+  /* Hide laptop */
+  .device-set#desktop {
+    display: none !important;
+  }
+
+  /* Center the single phone image */
+  .device-set#mobile {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+  }
+
+  .device-set#mobile img:first-child {
+    width: 260px;
+    height: auto;
+    border-radius: 25px;
+    display: block;
+    margin: 0 auto;
+  }
+}
