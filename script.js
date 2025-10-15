@@ -11,42 +11,65 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-window.addEventListener("load", function() {
+// ============================================
+// Loader fade-out animation
+// ============================================
+window.addEventListener("load", function () {
   const loader = document.getElementById("loader");
+  if (!loader) return;
+
   setTimeout(() => {
     loader.style.opacity = "0";
     setTimeout(() => {
       loader.style.display = "none";
-    }, 500); // matches the CSS transition (0.5s)
-  }, 1000); // stays for 2 seconds before fade
+    }, 500); // matches CSS transition (0.5s)
+  }, 1000); // stays for 1s before fade
 });
 
-// Placeholder for future API integration
-// This will later fetch live trading data dynamically
-
-window.addEventListener("load", function() {
-  const stats = {
+// ============================================
+// Fetch live trading performance data (API)
+// ============================================
+window.addEventListener("load", function () {
+  const fallback = {
     daily: 0.46,
     weekly: 3.91,
     monthly: 17.13,
   };
 
-  // Simulated update animation
-  const updateValues = () => {
-    document.getElementById("dailyValue").textContent = stats.daily.toFixed(2) + "%";
-    document.getElementById("weeklyValue").textContent = stats.weekly.toFixed(2) + "%";
-    document.getElementById("monthlyValue").textContent = stats.monthly.toFixed(2) + "%";
+  // Function to update displayed values
+  const updateValues = (data) => {
+    document.getElementById("dailyValue").textContent =
+      data.daily.toFixed(2) + "%";
+    document.getElementById("weeklyValue").textContent =
+      data.weekly.toFixed(2) + "%";
+    document.getElementById("monthlyValue").textContent =
+      data.monthly.toFixed(2) + "%";
   };
 
-  updateValues();
+  // Function to fetch live data
+  const fetchLiveStats = () => {
+    fetch("http://78.141.201.40:3000/trade/global-stats")
+      .then((res) => {
+        if (!res.ok) throw new Error("Network response was not ok");
+        return res.json();
+      })
+      .then((data) => {
+        console.log("✅ Live stats received:", data);
+        // API already returns percentages, not decimals — no multiply
+        updateValues({
+          daily: data.daily ?? fallback.daily,
+          weekly: data.weekly ?? fallback.weekly,
+          monthly: data.monthly ?? fallback.monthly,
+        });
+      })
+      .catch((err) => {
+        console.warn("⚠️ API error, using fallback:", err);
+        updateValues(fallback);
+      });
+  };
 
-  // API placeholder for real data
-  // fetch("https://api.traider.com/performance")
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     document.getElementById("dailyValue").textContent = data.daily + "%";
-  //     document.getElementById("weeklyValue").textContent = data.weekly + "%";
-  //     document.getElementById("monthlyValue").textContent = data.monthly + "%";
-  //   })
-  //   .catch(err => console.error("API error:", err));
+  // Initial render + auto-refresh every 10s
+  updateValues(fallback);
+  fetchLiveStats();
+  setInterval(fetchLiveStats, 10000);
 });
