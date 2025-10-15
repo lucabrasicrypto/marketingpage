@@ -352,7 +352,11 @@ background:rgba(0, 0, 0, 0.4);
   color: #000;
   text-align: center;
   padding: 100px 0;
-  height: 1000px;
+  width: 100%;
+  min-height: 100vh; /* fills full screen dynamically */
+  box-sizing: border-box;
+  overflow-x: hidden;
+  position: relative;
 }
 
 .devices-wrapper {
@@ -1236,12 +1240,27 @@ background:rgba(0, 0, 0, 0.4);
 
 /* ===== STOP HORIZONTAL SCROLL ON MOBILE ===== */
 html, body {
-  overflow-x: hidden;
+  overflow-x: hidden; f!important;
   width: 100%;
+  position: relative;
+}
+
+/* ===== FIX 2: No section wider than screen ===== */
+section, .container, .devices, .devices-wrapper, .devices-gallery, .device-set {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box;
 }
 
 /* Prevent any section from pushing layout */
 section, .container, .devices-gallery, .device-set {
   max-width: 100%;
   overflow-x: hidden;
+}
+
+html, body {
+  overflow-x: hidden !important;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
