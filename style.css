@@ -353,7 +353,6 @@ background:rgba(0, 0, 0, 0.4);
   text-align: center;
   padding: 100px 0;
   width: 100%;
-  min-height: 100vh; /* fills full screen dynamically */
   box-sizing: border-box;
   overflow-x: hidden;
   position: relative;
