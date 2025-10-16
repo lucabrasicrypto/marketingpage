@@ -1404,7 +1404,7 @@ header .cta-buttons {
 /* ===== MOBILE ADJUSTMENT ===== */
 @media (max-width: 480px) {
   header {
-    padding: 15px 0;
+    padding-top: 25px;
   }
 
   header .logo img {
