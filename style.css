@@ -1292,3 +1292,84 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+/* ===== RESPONSIVE FOOTER FIX ===== */
+@media (max-width: 480px) {
+  .footer-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 30px;
+    padding: 40px 20px;
+  }
+
+  /* Logo on top */
+  .footer-logo {
+    order: 1;
+  }
+
+  .footer-logo img {
+    width: 150px;
+    height: auto;
+  }
+
+  /* Group links + follow sections */
+  .footer-links,
+  .footer-follow {
+    order: 2;
+  }
+
+  .footer-links h4,
+  .footer-follow h4 {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+
+  .footer-links ul,
+  .footer-follow ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-links li,
+  .footer-follow li {
+    margin: 6px 0;
+  }
+
+  .footer-links a,
+  .footer-follow a {
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.85;
+  }
+
+  .footer-links a:hover,
+  .footer-follow a:hover {
+    opacity: 1;
+  }
+
+  /* About section centered */
+  .footer-about {
+    order: 3;
+    font-size: 13px;
+    line-height: 1.6;
+    max-width: 340px;
+    margin-top: 20px;
+    opacity: 0.9;
+  }
+
+  .footer-about a.email {
+    color: #00e0ff;
+    text-decoration: none;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    font-size: 12px;
+    padding: 20px 0;
+    opacity: 0.8;
+  }
+}
