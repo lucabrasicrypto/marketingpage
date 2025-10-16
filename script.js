@@ -48,7 +48,7 @@ window.addEventListener("load", function () {
 
   // Function to fetch live data
   const fetchLiveStats = () => {
-    fetch("http://78.141.201.40:3000/trade/global-stats")
+    fetch("78.141.201.40:3000/trade/global-stats")
       .then((res) => {
         if (!res.ok) throw new Error("Network response was not ok");
         return res.json();
