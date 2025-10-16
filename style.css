@@ -19,6 +19,8 @@ body {
   width: 100%;
   max-width: 1300px; /* Funnel width (adjust if needed) */
   margin: 0 auto;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 /* HEADER */
@@ -104,7 +106,7 @@ nav ul li a:hover {
 
 /* HERO SECTION */
 .hero {
-  min-height: 100vh;
+  min-height: 70vh;
   display: flex;
   align-items: center;
   background: rgba(0, 0, 0, 0.4);
@@ -115,7 +117,7 @@ nav ul li a:hover {
   align-items: center;
   justify-content: space-between;
   gap: 60px;
-  padding: 60px 0;
+  margin-top: 70px;
 }
 
 .hero-content {
@@ -156,7 +158,6 @@ nav ul li a:hover {
   max-width: 540px;
   width: 100%;
   height: auto;
-  padding-top: 60px;
 }
 
 /* RESPONSIVE DESIGN */
@@ -193,7 +194,7 @@ nav ul li a:hover {
   .hero-wrapper {
     flex-direction: column;
     text-align: center;
-    padding: 150px 0 80px;
+    padding: 100px 0 80px;
   }
 
   .hero-images {
@@ -202,7 +203,6 @@ nav ul li a:hover {
 
   .phones {
     max-width: 400px;
-    margin-top: 40px;
   }
 }
 
@@ -334,7 +334,7 @@ background:rgba(0, 0, 0, 0.4);
   }
 
   .stat-box {
-    padding-top: 15px;
+    padding-top: 20px;
   }
 
   .about-stats {
@@ -1009,7 +1009,7 @@ background:rgba(0, 0, 0, 0.4);
 /* ===== MOBILE VIEW (up to 480px) ===== */
 @media (max-width: 480px) {
   .performance-card {
-    width: 360px;
+    width: 340px;
     max-width: 95%;
     padding: 40px 25px;
     border-radius: 25px;
@@ -1127,6 +1127,7 @@ background:rgba(0, 0, 0, 0.4);
   width: 100%;
   max-width: 470px;
   animation: floatImage 2s ease-in-out infinite;
+  padding-top: 100px;
 }
 
 @keyframes floatImage {
@@ -1371,5 +1372,54 @@ html, body {
     font-size: 12px;
     padding: 20px 0;
     opacity: 0.8;
+  }
+}
+
+/* ===== HEADER / LOGO ALIGNMENT FIX ===== */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* ensure logo block is centered */
+header .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* optional: center the buttons below logo */
+header .cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+/* ===== MOBILE ADJUSTMENT ===== */
+@media (max-width: 480px) {
+  header {
+    padding: 15px 0;
+  }
+
+  header .logo img {
+    width: 160px;
+    height: auto;
+  }
+
+  header .cta-buttons {
+    flex-wrap: wrap;
+  }
+}
+
+/* ===== HIDE DESKTOP BUTTON ON MOBILE ===== */
+@media (max-width: 480px) {
+  .desktop-btn {
+    display: none !important;
   }
 }
